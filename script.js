@@ -53,7 +53,7 @@ operators.forEach((button) => {
 });
 
 function numberInput(num) {
-  if (num > "" && calc.operand == "") {
+  if (num > "" && calc.operand === "") {
     let numString = (calc.num1 += num);
     if (numString.length >= 10) {
       let sub = numString.substr(0, 9);
@@ -75,9 +75,9 @@ function numberInput(num) {
 }
 
 function updateDisplay() {
-  if (calc.result != "") {
+  if (calc.result >= "") {
     display.innerText = calc.result;
-  } else if (calc.operand != "" || calc.operand > 0) {
+  } else if (calc.operand != "" || calc.operand > "") {
     display.innerText = calc.num2;
     console.log(calc);
   } else if (calc.num1 > "") {
@@ -135,7 +135,7 @@ document.getElementById("eq").addEventListener("click", function () {
 });
 
 document.getElementById("del").addEventListener("click", function () {
-  if (calc.num2 > "" && calc.num2 > "") {
+  if (calc.num1 > "" && calc.num2 > "") {
     calc.num2 = calc.num2.slice(0, -1);
     updateDisplay();
     if (calc.num2 === "") {
