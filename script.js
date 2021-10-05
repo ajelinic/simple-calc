@@ -38,13 +38,13 @@ operators.forEach((button) => {
     setOperand(input);
     display.innerText = "";
     let interval = setInterval(function () {
-      if (display.innerText == "" && calc.result != "") {
+      if (display.innerText == "" && calc.result) {
         clearInterval(interval);
         calc.num1 = calc.result;
         calc.result = "";
         calc.num2 = "";
         display.innerText = calc.num1;
-      } else if (display.innerText == "") {
+      } else if (display.innerText === "") {
         clearInterval(interval);
         display.innerText = calc.num1;
       }
@@ -60,10 +60,7 @@ function numberInput(num) {
       calc.num1 = sub;
       return;
     }
-  } else if (
-    (num > "" && calc.num1 != "" && calc.operand != "") ||
-    calc.operand > 0
-  ) {
+  } else if (num > "" && calc.num1 != "" && calc.operand != "") {
     let numString = (calc.num2 += num);
     if (numString.length >= 10) {
       let sub = numString.substr(0, 9);
@@ -75,9 +72,10 @@ function numberInput(num) {
 }
 
 function updateDisplay() {
-  if (calc.result >= "") {
+  if (calc.result) {
     display.innerText = calc.result;
-  } else if (calc.operand != "" || calc.operand > "") {
+    console.log(calc);
+  } else if (calc.operand != "") {
     display.innerText = calc.num2;
     console.log(calc);
   } else if (calc.num1 > "") {
@@ -135,7 +133,7 @@ document.getElementById("eq").addEventListener("click", function () {
 });
 
 document.getElementById("del").addEventListener("click", function () {
-  if (calc.num1 > "" && calc.num2 > "") {
+  if (calc.num1 != "" && calc.num2 > "") {
     calc.num2 = calc.num2.slice(0, -1);
     updateDisplay();
     if (calc.num2 === "") {
@@ -160,11 +158,18 @@ document.getElementById("del").addEventListener("click", function () {
 document.getElementById(".").addEventListener("click", function () {
   if (calc.num2 > "") {
     calc.num2 = calc.num2 + ".";
+    if (calc.num2[1] === ".") {
+      calc.num2 = calc.num2.slice(0, 2);
+    }
+
     updateDisplay();
     return;
   }
   if (calc.num1 > "") {
     calc.num1 = calc.num1 + ".";
+    if (calc.num1[1] === ".") {
+      calc.num1 = calc.num1.slice(0, 2);
+    }
     updateDisplay();
     return;
   }
