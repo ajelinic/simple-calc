@@ -38,7 +38,7 @@ operators.forEach((button) => {
     setOperand(input);
     display.innerText = "";
     let interval = setInterval(function () {
-      if (display.innerText == "" && calc.result) {
+      if (display.innerText == "" && calc.result > 0) {
         clearInterval(interval);
         calc.num1 = calc.result;
         calc.result = "";
@@ -139,17 +139,15 @@ document.getElementById("del").addEventListener("click", function () {
     if (calc.num2 === "") {
       calc.zero = 0;
       display.innerText = calc.zero;
-      updateDisplay();
     }
     return;
-  } else if (calc.num1 > "") {
+  } else if (calc.num1 > "" && calc.operand === "") {
     calc.num1 = calc.num1.slice(0, -1);
     updateDisplay();
     console.log(calc);
     if (calc.num1 === "") {
       calc.zero = 0;
       display.innerText = calc.zero;
-      updateDisplay();
     }
     return;
   }
