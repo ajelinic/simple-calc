@@ -35,10 +35,14 @@ numbers.forEach((button) => {
 operators.forEach((button) => {
   button.addEventListener("click", function () {
     var input = button.firstChild.data;
-    setOperand(input);
-    display.innerText = "";
+    if (calc.num1 === "") {
+      display.innerText = "ERROR";
+    } else {
+      setOperand(input);
+      display.innerText = "";
+    }
     let interval = setInterval(function () {
-      if (display.innerText == "" && calc.result > 0) {
+      if (display.innerText == "" && calc.result > "") {
         clearInterval(interval);
         calc.num1 = calc.result;
         calc.result = "";
@@ -69,6 +73,7 @@ function numberInput(num) {
     }
   }
   updateDisplay();
+  addOnlyOneZero();
 }
 
 function updateDisplay() {
@@ -86,15 +91,13 @@ function updateDisplay() {
 
 function setOperand(operand) {
   if (
-    operand === "+" ||
-    operand === "-" ||
-    operand === "X" ||
-    operand === "/"
+    (operand === "+" && calc.num1 != "") ||
+    (operand === "-" && calc.num1 != "") ||
+    (operand === "X" && calc.num1 != "") ||
+    (operand === "/" && calc.num1 != "")
   ) {
     calc.operand = operand;
     console.log(calc);
-  } else if (calc.num1 === "") {
-    return (display.innerText = "ERROR");
   }
 }
 function displayLongNumbers() {
@@ -116,17 +119,20 @@ document.getElementById("eq").addEventListener("click", function () {
       calc.result = +calc.num1 - +calc.num2;
       updateDisplay();
       displayLongNumbers(calc.result);
+      ifResultIsZero();
       break;
     case "X":
       calc.result = +calc.num1 * +calc.num2;
       updateDisplay();
       displayLongNumbers(calc.result);
+      ifResultIsZero();
       break;
     case "/":
       calc.result = +calc.num1 / +calc.num2;
       updateDisplay();
       displayLongNumbers(calc.result);
       dividedByZero(calc.result);
+      ifResultIsZero();
       break;
     default:
   }
@@ -185,4 +191,19 @@ function dividedByZero() {
   calc.num2 = "";
   calc.operand = "";
   return (display.innerText = "ERROR");
+}
+
+function addOnlyOneZero() {
+  let firstZero = document.getElementsByClassName("zero");
+  if (calc.num1[1] === ".") {
+    updateDisplay();
+  } else if (calc.num1[0] === firstZero.num.textContent) {
+    calc.num1 = calc.num1.slice(0, 1);
+    updateDisplay();
+  }
+}
+function ifResultIsZero() {
+  let resZero = calc.result.toString();
+  calc.result = resZero;
+  updateDisplay();
 }
