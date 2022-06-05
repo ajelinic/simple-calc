@@ -28,7 +28,7 @@ body {
   text-align: right;
 }
 .calc_operations {
-  position: relative;
+  display: flex;
   border: 1px solid black;
   margin: 10px;
 }
@@ -40,14 +40,12 @@ body {
 }
 .down_buttons {
   display: flex;
-  position: absolute;
-  bottom: 1px;
-  margin-left: 9px;
+  justify-content: space-between;
 }
 
 .calc_button {
   border: 1px solid black;
-  margin: 10px;
+  margin: 10px 10px 5px 10px;
   width: 64px;
   height: 64px;
   font-weight: bold;
@@ -64,7 +62,7 @@ body {
   background-color: rgb(3, 184, 3);
 }
 .zero {
-  width: 155px;
+  width: 165px;
   margin-right: 20px;
 }
 .del {
@@ -73,4 +71,27 @@ body {
 .equal {
   background-color: rgb(241, 145, 55);
   height: 145px;
+}
+.upper-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.side-buttons {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+  width: 25%;
+}
+.numbers {
+  display: flex;
+  flex-flow: row wrap-reverse;
+  width: 100%;
+
+  justify-content: space-between;
+}
+.central-part {
+  display: flex;
+  flex-flow: column;
+  width: 75%;
 }

@@ -1,7 +1,18 @@
 "use strict";
-const numbers = document.querySelectorAll("#num");
-const operators = document.querySelectorAll("#operator");
+const numbers = document.getElementsByName("num");
+const operators = document.getElementsByName("operator");
+const numberButtons = document.querySelector(".numbers");
 let display = document.getElementById("view");
+
+for (let i = 1; i <= 9; i++) {
+  let numButton = document.createElement("button");
+  numButton.className = "calc_button";
+  numButton.value = i;
+  numButton.setAttribute("name", "num");
+  numButton.id = i;
+  numButton.innerText = i;
+  numberButtons.append(numButton);
+}
 
 let calc = {
   num1: "",
@@ -27,14 +38,14 @@ document.getElementById("clr").addEventListener("click", function () {
 
 numbers.forEach((button) => {
   button.addEventListener("click", function () {
-    let input = button.firstChild.data;
+    let input = button.value;
     numberInput(input);
   });
 });
 
 operators.forEach((button) => {
   button.addEventListener("click", function () {
-    var input = button.firstChild.data;
+    var input = button.value;
     if (calc.num1 === "") {
       display.innerText = "ERROR";
     } else {
@@ -159,7 +170,7 @@ document.getElementById("del").addEventListener("click", function () {
   }
 });
 
-document.getElementById(".").addEventListener("click", function () {
+document.getElementById("comma").addEventListener("click", function () {
   if (calc.num2 > "") {
     calc.num2 = calc.num2 + ".";
     if (calc.num2[1] === ".") {
@@ -178,7 +189,7 @@ document.getElementById(".").addEventListener("click", function () {
     return;
   }
   if (calc.num1 === "") {
-    document.getElementById(".").disable = true;
+    document.getElementById("comma").disable = true;
   }
 });
 
@@ -197,7 +208,7 @@ function addOnlyOneZero() {
   let firstZero = document.getElementsByClassName("zero");
   if (calc.num1[1] === ".") {
     updateDisplay();
-  } else if (calc.num1[0] === firstZero.num.textContent) {
+  } else if (calc.num1[0] === firstZero.num.value) {
     calc.num1 = calc.num1.slice(0, 1);
     updateDisplay();
   }

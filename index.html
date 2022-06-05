@@ -20,27 +20,53 @@
       <div class="calc">
         <div id="view" class="calc_view"></div>
         <div class="calc_operations">
-          <div class="button_containter">
-            <button id="clr" class="calc_button clr">C</button>
-            <button id="del" class="calc_button del">DEL</button>
-            <button id="operator" class="calc_button divide">/</button>
-            <button id="operator" class="calc_button multiply">X</button>
-            <button id="num" class="calc_button seven">7</button>
-            <button id="num" class="calc_button">8</button>
-            <button id="num" class="calc_button">9</button>
-            <button id="operator" class="calc_button minus">-</button>
-            <button id="num" class="calc_button">4</button>
-            <button id="num" class="calc_button">5</button>
-            <button id="num" class="calc_button">6</button>
-            <button id="operator" class="calc_button plus">+</button>
-            <button id="num" class="calc_button one">1</button>
-            <button id="num" class="calc_button">2</button>
-            <button id="num" class="calc_button">3</button>
-            <button id="eq" class="calc_button equal">=</button>
+          <div class="central-part">
+            <div class="upper-buttons">
+              <button id="clr" class="calc_button clr">C</button>
+              <button id="del" class="calc_button del">DEL</button>
+              <button
+                id="divide"
+                name="operator"
+                value="/"
+                class="calc_button divide"
+              >
+                /
+              </button>
+            </div>
+            <div class="numbers"></div>
+            <div class="down_buttons">
+              <button id="zero" name="num" value="0" class="calc_button zero">
+                0
+              </button>
+              <button id="comma" class="calc_button comma">.</button>
+            </div>
           </div>
-          <div class="down_buttons">
-            <button id="num" class="calc_button zero">0</button>
-            <button id="." class="calc_button comma">.</button>
+          <div class="side-buttons">
+            <button
+              id="multiply"
+              name="operator"
+              value="X"
+              class="calc_button multiply"
+            >
+              X
+            </button>
+            <button
+              id="minus"
+              name="operator"
+              value="-"
+              class="calc_button minus"
+            >
+              -
+            </button>
+            <button
+              id="plus"
+              name="operator"
+              value="+"
+              class="calc_button plus"
+            >
+              +
+            </button>
+            <button id="eq" class="calc_button equal">=</button>
           </div>
         </div>
       </div>
